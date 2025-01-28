@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+   <link rel="icon" href="https://cdn.glitch.global/1f299a41-d5a5-47cf-9557-b4f597122a41/favicon.ico?v=1738099771314" type="image/x-icon" />
+  
+  <title>Responsiv Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow: hidden; /* Förhindra scrollning */
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between; /* För att placera text på vänster och höger */
+      align-items: center; /* Vertikal centrering */
+      padding: 20px; /* Samma padding som innan */
+      width: 100%; /* Header sträcker sig över hela sidan */
+    }
+
+    header {
+      display: flex;
+      align-items: center; /* Centrerar vertikalt */
+      justify-content: space-between; /* För att dela upp elementen till vänster och höger */
+      width: 100%;
+    }
+
+    .main-header {
+      font-size: 2rem;
+      font-family: "Times New Roman", serif;
+      font-style: italic;
+      margin-right: 10px; /* För att skapa avstånd mellan texten och symbolen */
+    }
+
+    .sub-header {
+      font-family: "Courier New", monospace;
+      font-size: 1.5rem; /* Matchar storleken på titlarna */
+      font-style: normal; /* Inte kursiv */
+      color: #333;
+      text-align: right; /* Justera texten till höger */
+      margin-right: 20px;
+      padding-right: 20px;
+      flex: 1; /* Gör så att sub-headern tar upp all tillgänglig plats till höger */
+    }
+
+    .main-container {
+      display: flex;
+      height: calc(100vh - 70px); /* Full höjd minus header */
+      padding-left: 20px; /* Avstånd från vänster */
+    }
+
+    .titles {
+      display: flex;
+      flex-direction: column;
+      gap: 50px; /* Avstånd mellan titlar */
+      flex: 0 0 auto; /* Förhindra att titlarna sträcks ut */
+      justify-content: flex-start;
+    }
+
+    .titles a {
+      text-decoration: none;
+      font-size: 1.5rem;
+      color: #333;
+      transition: text-shadow 0.3s ease;
+      cursor: pointer;
+      font-family: courier new;
+    }
+
+    .titles a:hover {
+      text-shadow: 0 0 15px rgba(0, 115, 230, 1), 0 0 30px rgba(0, 115, 230, 0.8);
+    }
+
+    /* Justering av bilder */
+    .image-display {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      position: relative;
+      overflow: visible;
+      margin-top: 30px; /* Skapar ett avstånd mellan subheader och bilder */
+    }
+
+    .image-display img {
+      max-width: 80%;
+      max-height: 80%;
+      object-fit: contain;
+      opacity: 0;
+      transition: opacity 0.3s ease, box-shadow 0.3s ease;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+    }
+
+    .image-display img.show {
+      opacity: 1;
+      box-shadow: 0 0 20px rgba(0, 115, 230, 1), 0 0 40px rgba(0, 115, 230, 0.8);
+    }
+
+    /* Media Query för att justera layouten vid mindre skärmstorlekar */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column; /* Staplar elementen vertikalt */
+        align-items: flex-start; /* Justera till vänster */
+      }
+
+      header {
+        flex-direction: column; /* Staplar "main-header" och "sub-header" vertikalt */
+        align-items: flex-start; /* Justera till vänster */
+      }
+
+      .sub-header {
+        text-align: left; /* Justerar sub-header till vänster */
+        margin-top: 10px; /* Skapar avstånd mellan huvudtexten och sub-header */
+        padding-right: 0; /* Tar bort padding till höger */
+      }
+    }
+
+    /* CSS-animation för att rotera symbolen */
+    @keyframes rotate-symbol {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Anpassningar för symbolen */
+    .header-container img {
+      width: 35px; /* Gör symbolen större */
+      height: 35px; /* Gör symbolen större */
+      animation: rotate-symbol 10s linear infinite; /* Rotation tar nu 10 sekunder */
+    }
+    
+ .email-link {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  color: #0073e6;
+  text-decoration: none;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  z-index: 9999; /* Se till att länken är ovanpå allt annat */
+}
+
+.email-link:hover {
+  color: #005bb5;
+  text-shadow: 0 0 10px rgba(0, 115, 230, 1), 0 0 20px rgba(0, 115, 230, 0.8);
+}
+    
+  </style>
+</head>
+<body>
+  
+<a href="mailto:emmyseeger@hotmail.com" class="email-link">emmyseeger@hotmail.com</a>
+  
+  <div class="header-container">
+    <header>
+      <span class="main-header">EMMY SEEGER</span>
+      <img src="https://cdn.glitch.global/8aecc4c4-75e3-4006-9917-8dd5f5978d58/test%20symbol%20till%20hemsidan.png?v=1733230216519" alt="Symbol" />
+      <span class="sub-header">Beckmans designhögskola * Grafisk designer * Stockholm *</span>
+    </header>
+  </div>
+
+  <div class="main-container">
+    <div class="titles">
+      <a href="https://organic-scratched-act.glitch.me/" data-title="essence">ESSENCE</a>
+      <a href="https://leather-swamp-yak.glitch.me/" data-title="viveka">VIVEKA</a>
+      <a href="https://dune-right-observatory.glitch.me/" data-title="magasin">MAGASIN III</a>
+      <a href="https://chlorinated-recondite-erica.glitch.me/" data-title="freyja">FREYJA+SÖDER</a>
+      <a href="https://woolen-motley-thrush.glitch.me/" data-title="landscapes">LANDSCAPES</a>
+      <a href="https://few-suave-appendix.glitch.me/" data-title="verket">VERKET</a>
+    </div>
+    <div class="image-display">
+      <img src="https://cdn.glitch.global/1f299a41-d5a5-47cf-9557-b4f597122a41/ess.png?v=1737986158050" data-title="essence" alt="ESSENCE" />
+      <img src="https://cdn.glitch.global/1f299a41-d5a5-47cf-9557-b4f597122a41/viv.png?v=1737986162561" data-title="viveka" alt="VIVEKA" />
+      <img src="https://cdn.glitch.global/1f299a41-d5a5-47cf-9557-b4f597122a41/maga.png?v=1737986166251" data-title="magasin" alt="MAGASIN III" />
+      <img src="https://cdn.glitch.global/1f299a41-d5a5-47cf-9557-b4f597122a41/_DSC9328.png?v=1737986172587" data-title="freyja" alt="FREYJA+SÖDER" />
+      <img src="https://cdn.glitch.global/1f299a41-d5a5-47cf-9557-b4f597122a41/land.png?v=1737986141100" data-title="landscapes" alt="LANDSCAPES" />
+      <img src="https://cdn.glitch.global/1f299a41-d5a5-47cf-9557-b4f597122a41/tele.png?v=1737986174250" data-title="verket" alt="VERKET" />
+    </div>
+  </div>
+  <!-- Footer med e-postadress -->
+   
+  <script>
+ 
+  const titles = document.querySelectorAll(".titles a");
+  const images = document.querySelectorAll(".image-display img");
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+  titles.forEach((title) => {
+    let clickTimeout;
+
+    if (isMobile) {
+      title.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Om användaren klickar två gånger snabbt, navigera
+        if (clickTimeout) {
+          clearTimeout(clickTimeout);
+          window.location.href = title.href;
+        } else {
+          clickTimeout = setTimeout(() => {
+            clickTimeout = null;
+          }, 2000); // Tidsgräns för dubbelklick
+        }
+      });
+    }
+
+    title.addEventListener("mouseover", () => {
+      const titleKey = title.getAttribute("data-title");
+
+      images.forEach((img) => {
+        img.classList.remove("show");
+      });
+
+      const targetImg = document.querySelector(`.image-display img[data-title="${titleKey}"]`);
+      if (targetImg) {
+        targetImg.classList.add("show");
+      }
+    });
+
+    title.addEventListener("mouseout", () => {
+      images.forEach((img) => {
+        img.classList.remove("show");
+      });
+    });
+  });
+
+
+  </script>
+</body>
+</html>
