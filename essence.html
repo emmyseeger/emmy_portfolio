@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektsida</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header */
+        header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 40px 10%;
+            align-items: start; /* Justerar alla element i linje med toppen */
+            position: relative;
+        }
+
+        header a.back-arrow {
+            text-decoration: none;
+            color: black;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        header .subtitle {
+            grid-column: 1; /* Placerad under titeln */
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-top: 0; /* Ta bort extra utrymme över textspalten */
+        }
+
+        header .subtitle p {
+            margin: 0.5rem 0;
+            position: relative;
+            padding-left: 20px; /* Utrymme för pilen */
+          font-family: courier new;
+        }
+
+        header .subtitle p::before {
+            content: "→"; /* Pil-symbol */
+            position: absolute;
+            left: 0; /* Positionera pilen */
+            color: black; /* Färg på pilen */
+            font-size: 1rem;
+          
+        }
+
+        header .description {
+            grid-column: 2; /* Håller sig på högersidan */
+            font-size: 1rem;
+            line-height: 1.5;
+            align-self: flex-start; /* Justerar textspalt 2 så den börjar högst upp */
+            margin-top: 0; /* Ta bort extra utrymme ovanför textspalten */
+      font-family: courier new;  
+      }
+
+        /* Fullbreddssektion för gifen */
+        .full-width {
+            margin: 0 10%;
+            margin-bottom: 20px;
+        }
+
+        .full-width img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Flex layout för projektgriden */
+        .project-grid {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10%;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .project-item img,
+        .project-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Responsiv design */
+        @media (max-width: 768px) {
+            header {
+                grid-template-columns: 1fr;
+            }
+
+            header a.back-arrow {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            header .subtitle,
+            header .description {
+                grid-column: 1;
+            }
+
+            .full-width {
+                margin: 0 5%;
+            }
+
+            .project-grid {
+                flex-direction: column;
+            }
+
+            .column {
+                flex: none;
+            }
+        }
+
+        /* Footer utan bakgrundsfärg */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+          font-family: courier new;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://succulent-iron-postage.glitch.me/#" class="back-arrow">←</a>
+        <div>
+            <h1>ESSENCE tidskrift</h1>
+        </div>
+        <div class="subtitle">
+            <p>Redaktör: Emmy Seeger</p>
+            <p>Omslags foto: Emmy Seeger</p>
+            <p>Vernissage: HOBO hotell</p>
+        </div>
+        <div class="description">
+            <p>Projekt andra året på Beckmans i samarbete med Juice Studios i grupp med Olle Ljung, Edda Eliasson och Wilma Reichardt.</p>
+            <p>Brief: Producera en 8-sidig tidning i broadsheet format om en kreatör från Juice Studios genom att samla och producera material.</p>
+            <p>Emina Iman är en kreatör vars konst och uttryck kretsar kring frihet, individualitet, pondus och kreativitet. Genom att fördjupa sig i det specifika som definierar oss, lyfter hon fram det som förenar oss – genom dans, bild, poesi och samtal.</p>
+        </div>
+    </header>
+
+    <!-- Fullbreddssektion för gifen -->
+    <div class="full-width">
+        <img src="https://cdn.glitch.global/454f740f-6be5-4f8c-89bd-d240b39d2996/Essence_bladdra.gif?v=1737464370573" alt="Essence GIF">
+    </div>
+
+    <div class="project-grid">
+        <!-- Kolumn 1 -->
+        <div class="column">
+            <div class="project-item">
+                <img src="https://cdn.glitch.global/454f740f-6be5-4f8c-89bd-d240b39d2996/000066900010.jpg?v=1737541875608" alt="Bild 1">
+            </div>
+            <div class="project-item">
+                <img src="https://cdn.glitch.me/454f740f-6be5-4f8c-89bd-d240b39d2996/LA%CC%8AGEssemce_SystemK._redigerade-3.png?v=1737630739154" alt="Bild 2">
+            </div>
+            <div class="project-item">
+                <img src="https://cdn.glitch.global/454f740f-6be5-4f8c-89bd-d240b39d2996/LA%CC%8AG.png?v=1737630737917" alt="Bild 3">
+            </div>
+        </div>
+        <!-- Kolumn 2 -->
+        <div class="column">
+            <div class="project-item">
+                <img src="https://cdn.glitch.global/8aecc4c4-75e3-4006-9917-8dd5f5978d58/IMG_0293.JPG?v=1735913223256" alt="Bild 4">
+            </div>
+            <div class="project-item">
+                <img src="https://cdn.glitch.global/454f740f-6be5-4f8c-89bd-d240b39d2996/LA%CC%8AGIMG_0156.png?v=1737630740290" alt="Bild 5">
+            </div>
+            <div class="project-item">
+                <img src="https://cdn.glitch.global/454f740f-6be5-4f8c-89bd-d240b39d2996/LA%CC%8AGolle_red_storlek.png?v=1737630742653" alt="Bild 6">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer med e-postadress -->
+    <footer>
+        <p>emmyseeger@hotmail.com</p>
+    </footer>
+</body>
+</html>

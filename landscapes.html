@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projektsida</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Arial", sans-serif;
+    }
+
+    /* Footer utan bakgrundsfärg */
+    footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-family: courier new;
+    }
+
+    /* Header */
+    header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      padding: 40px 10%;
+      align-items: start; /* Alla element justeras mot toppen */
+      position: relative;
+    }
+
+    header a.back-arrow {
+      text-decoration: none;
+      color: black;
+      font-size: 1.5rem;
+      position: absolute;
+      left: 20px;
+      top: 20px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+      text-align: left;
+      align-self: start; /* Justera baslinjen */
+    }
+
+    header p {
+      font-size: 1rem;
+      margin: 0;
+      line-height: 1.5;
+      text-align: left;
+      font-family: courier new;
+      align-self: start; /* Justera baslinjen */
+    }
+
+    header .subtitle {
+      grid-column: 1; /* Placerad under titeln */
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-top: 0;
+      align-self: baseline; /* Justera baslinjen för texten */
+    }
+
+    header .subtitle p {
+      margin: 0.5rem 0;
+      position: relative;
+      padding-left: 20px;
+      font-family: courier new;
+    }
+
+    header .subtitle p::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: black;
+      font-size: 1rem;
+    }
+
+    header .description {
+      grid-column: 2;
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-top: 0;
+      font-family: courier new;
+      align-self: baseline; /* Justera baslinjen för texten */
+    }
+
+    /* Grid för bilder */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 0 10%;
+      margin-top: 20px;
+    }
+
+    .project-item img {
+      width: 100%;
+      height: auto;
+    }
+
+    /* Video */
+    .project-video {
+      display: flex;
+      justify-content: center;
+      margin: 40px 10%;
+    }
+
+    .project-video iframe {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+    }
+
+    /* Responsiv design */
+    @media (max-width: 768px) {
+      header {
+        grid-template-columns: 1fr; /* Gör om till en kolumn */
+        text-align: left;
+      }
+
+      header a.back-arrow {
+        position: static;
+        margin-bottom: 20px;
+      }
+
+      header h1 {
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      /* Justera så att subtitle och description hamnar ovanför varandra */
+      header .subtitle,
+      header .description {
+        grid-column: span 1; /* Sätt dem båda på samma rad i en kolumn */
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="https://succulent-iron-postage.glitch.me/#" class="back-arrow">←</a>
+    <div>
+      <h1>LANDSCAPES</h1>
+    </div>
+    <div class="subtitle">
+      <p>Vernissage: Wisdome Tekniska museet</p>
+    </div>
+    <div class="description">
+      <p>
+        Projekt första året på Beckmans i samarbete med Kungliga musikhögskolan, i grupp med Phoebe Crookes och Olle Ljung.
+      </p>
+      <p>
+        Uppgiften var att göra en video utifrån en låt komponerad av en student från KMH.
+      </p>
+      <p>
+        En elektronisk låt producerad av Vilmar Janson blev till ett klassiskt riddare-och-drake-drama. Utan begränsningar för innehållet hämtade vi inspiration från musiken och varandra.
+      </p>
+    </div>
+  </header>
+
+  <div class="project-grid">
+    <div class="project-item">
+      <img src="https://cdn.glitch.global/7c3c6197-02da-4ae0-801a-fc065fdf175c/nytt%2Cnytt%20gra%CC%88s.png?v=1737582830106" alt="Bild 1" />
+    </div>
+    <div class="project-item">
+      <img src="https://cdn.glitch.global/7c3c6197-02da-4ae0-801a-fc065fdf175c/Ska%CC%88rmavbild%202024-12-02%20kl.%2022.21.56.png?v=1734963246888" alt="Bild 2" />
+    </div>
+    <div class="project-item">
+      <img src="https://cdn.glitch.global/7c3c6197-02da-4ae0-801a-fc065fdf175c/Ska%CC%88rmavbild%202024-12-23%20kl.%2015.22.04.png?v=1734963927133" alt="bild 3" />
+    </div>
+    <div class="project-item">
+      <img src="https://cdn.glitch.global/7c3c6197-02da-4ae0-801a-fc065fdf175c/drakhja%CC%88rta_3.png?v=1737582669181" alt="Bild 4" />
+    </div>
+  </div>
+
+  <div class="project-video">
+    <iframe src="https://www.youtube.com/embed/ztcvyoTOVKQ?si=AP-0Uba0WsM0Lsf0" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <footer>
+    <p>emmyseeger@hotmail.com</p>
+  </footer>
+</body>
+</html>

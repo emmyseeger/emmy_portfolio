@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektsida</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header */
+        header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 40px 10%;
+            position: relative;
+        }
+
+        header a.back-arrow {
+            text-decoration: none;
+            color: black;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1rem;
+            margin: 0 0 1rem;
+            line-height: 1.5;
+          font-family: courier new;
+        }
+      
+           /* Footer utan bakgrundsfärg */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+          font-family: courier new;
+        }
+
+        /* Flex layout for project grid */
+        .project-grid {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10%;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .project-item img,
+        .project-item video {
+            width: 100%;
+            height: auto; /* Behåll ursprungliga proportioner */
+            display: block;
+        }
+
+        /* Responsiv design */
+        @media (max-width: 768px) {
+            header {
+                grid-template-columns: 1fr;
+            }
+
+            header a.back-arrow {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .project-grid {
+                flex-direction: column;
+            }
+
+            .column {
+                flex: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://succulent-iron-postage.glitch.me/#" class="back-arrow">←</a>
+        <div>
+            <h1>MAGASIN III</h1>
+        </div>
+        <div>
+            <p>Projekt första året på Beckmans i samarbete med Magasin III, i grupp med Mika Hyvönen.</p>
+            <p>Frågeställningen “Har konsten en uppgift att kommunicera, eller inte?” var utgångspunkten för det här projektet.</p>
+            <p>Vi har arbetat med verktyget, taglines i form av frågor om minnen (utställningens tematik). Att ställa en fråga ställer ett krav på betraktaren att besvara frågan eller bortse från den. Vår förhoppning är att betraktaren använder frågorna som verktyg för att utforska utställningen, och att de tidigt möjliggör en personlig ingång och reflektion av egna minnen.</p>
+        </div>
+    </header>
+
+    <div class="project-grid">
+        <!-- Kolumn 1 -->
+        <div class="column">
+            <div class="project-item">
+                <img src="https://cdn.glitch.global/8bfc434e-ce87-4641-a2a8-deb04729e8b3/test4_mindre.png?v=1737579617394" alt="Bild 1">
+            </div>
+            <div class="project-item">
+                <video src="https://cdn.glitch.me/8bfc434e-ce87-4641-a2a8-deb04729e8b3/Magasin3_rorligt-klar.mp4?v=1735207452871" loop muted autoplay playsinline></video>
+            </div>
+        </div>
+        <!-- Kolumn 2 -->
+        <div class="column">
+            <div class="project-item">
+                <img src="https://cdn.glitch.global/8bfc434e-ce87-4641-a2a8-deb04729e8b3/Ska%CC%88rmavbild%202024-12-26%20kl.%2011.02.36.png?v=1735207376192" alt="Bild 2">
+            </div>
+            <div class="project-item">
+                <img src="https://cdn.glitch.global/8bfc434e-ce87-4641-a2a8-deb04729e8b3/Ska%CC%88rmavbild%202024-12-27%20kl.%2014.58.42.png?v=1735307946900" alt="Bild 4">
+            </div>
+        </div>
+    </div>
+      <!-- Footer med e-postadress -->
+    <footer>
+        <p>emmyseeger@hotmail.com</p>
+    </footer>
+</body>
+</html>

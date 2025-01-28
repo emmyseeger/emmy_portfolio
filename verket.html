@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektsida</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header */
+        header {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Sätter båda kolumnerna till samma bredd */
+            gap: 20px;
+            padding: 40px 10%;
+            position: relative;
+        }
+     /* Footer utan bakgrundsfärg */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+          font-family: courier new;
+        }
+      
+        header a.back-arrow {
+            text-decoration: none;
+            color: black;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+            text-align: left;
+        }
+
+        header p {
+            font-size: 1rem;
+            margin: 0;
+            margin-bottom: 1rem; /* Lägg till denna rad för att skapa ett mellanrum */
+            line-height: 1.5;
+            text-align: left;
+          font-family: courier new;
+        }
+
+        /* Grid för bilder */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Gör alla bilder i tre kolumner */
+            gap: 20px;
+            padding: 0 10%;
+            margin-top: 20px;
+        }
+
+        .project-item img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Video */
+        .project-video {
+            display: flex;
+            justify-content: center;
+            margin: 40px 10%;
+        }
+
+        .project-video iframe {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9; /* Håller en 16:9 förhållande för videon */
+        }
+
+        /* Responsiv design */
+        @media (max-width: 768px) {
+            header {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            /* Ändrar pilens position på smalare skärmar */
+            header a.back-arrow {
+                position: static; /* Fjärrar positioneringen så att den hamnar ovanför titeln */
+                margin-bottom: 20px; /* Lägger till lite mellanrum mellan pilen och titeln */
+            }
+
+            header h1 {
+                margin-top: 0; /* Ser till att det inte finns för mycket mellanrum över titeln */
+                margin-bottom: 20px; /* Lägger till lite mellanrum mellan titeln och beskrivningen */
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr; /* Ändra till en kolumn vid mindre skärmar */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://succulent-iron-postage.glitch.me/#" class="back-arrow">←</a>
+        <div>
+            <h1>VERKET</h1>
+        </div>
+        <div>
+         <p>
+                    Projekt andra året på Beckmans i kursen grafisk identitet.
+                </p>
+                <p>
+                   Hitta ett företag som inte längre existerar, ta inspiration från deras identitet, återskapa företaget idag med en ny funktion.
+                </p>
+                <p>
+                    Televerket (Sveriges telenät) återuppstår som en klubbverksamhet "VERKET". I sann Televerket-anda strävar de efter att få människor att kommunicera med varandra. Från att tidigare ha sammankopplat människor via telefonen tar de nu steget ut i det offentliga rummet.
+                </p>
+        </div>    
+    </header>
+
+    <div class="project-grid">
+        <!-- Bild 1 -->
+        <div class="project-item">
+            <img src="https://cdn.glitch.global/b167a01c-e22f-49be-a8a2-527affb8881b/Ska%CC%88rmavbild%202024-12-25%20kl.%2016.33.39.png?v=1735143543877" alt="Bild 1">
+        </div>
+        <!-- Bild 2 -->
+        <div class="project-item">
+            <img src="https://cdn.glitch.global/b167a01c-e22f-49be-a8a2-527affb8881b/Ska%CC%88rmavbild%202024-12-25%20kl.%2016.34.04.png?v=1735143545740" alt="Bild 2">
+        </div>
+        <!-- Bild 3 -->
+        <div class="project-item">
+            <img src="https://cdn.glitch.global/b167a01c-e22f-49be-a8a2-527affb8881b/Ska%CC%88rmavbild%202024-12-25%20kl.%2016.34.29.png?v=1735143535545" alt="Bild 3">
+        </div>
+        <!-- Bild 4 -->
+        <div class="project-item">
+            <img src="https://cdn.glitch.global/b167a01c-e22f-49be-a8a2-527affb8881b/verket_process-1.gif?v=1735141221140" alt="Bild 4">
+        </div>
+        <!-- Bild 5 -->
+        <div class="project-item">
+            <img src="https://cdn.glitch.global/b167a01c-e22f-49be-a8a2-527affb8881b/typ_test_tele.png?v=1735143467306" alt="Bild 5">
+        </div>
+        <!-- Bild 6 -->
+        <div class="project-item">
+            <img src="https://cdn.glitch.global/b167a01c-e22f-49be-a8a2-527affb8881b/urklippt_affisch.png?v=1737583244667" alt="Bild 6">
+        </div>
+    </div>
+      <!-- Footer med e-postadress -->
+    <footer>
+        <p>emmyseeger@hotmail.com</p>
+    </footer>
+</body>
+</html>

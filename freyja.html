@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projektsida</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+      }
+
+      /* Header */
+      header {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 40px 10%;
+        position: relative;
+      }
+
+      header a.back-arrow {
+        text-decoration: none;
+        color: black;
+        font-size: 1.5rem;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      header p {
+        font-size: 1rem;
+        margin: 0 0 1rem;
+        line-height: 1.5;
+        font-family: courier new;
+      }
+
+      /* Footer utan bakgrundsfärg */
+      footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+        font-family: courier new;
+      }
+
+      /* Flex layout for project grid */
+      .project-grid {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10%;
+        margin-top: 20px;
+        gap: 20px;
+      }
+
+      .column {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        flex: 1;
+      }
+
+      .project-item img,
+      .project-item video {
+        width: 100%;
+        height: auto; /* Behåll ursprungliga proportioner */
+        display: block;
+      }
+
+      /* Responsiv design */
+      @media (max-width: 768px) {
+        header {
+          grid-template-columns: 1fr;
+        }
+
+        header a.back-arrow {
+          position: static;
+          margin-bottom: 20px;
+        }
+
+        .project-grid {
+          flex-direction: column;
+        }
+
+        .column {
+          flex: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="https://succulent-iron-postage.glitch.me/#" class="back-arrow"
+        >←</a
+      >
+      <div>
+        <h1>FREYJA + SÖDER</h1>
+      </div>
+      <div>
+        <p>Uppdrag för Freyja restaurang, i samarbete med Molly Schedin.</p>
+        <p>
+          Vi skapade en ny matmeny till Freyja samt drinkmeny, textkort och
+          nothållare, med ingång personligt uttryck.
+        </p>
+        <p>
+          Vi ville lyfta fram våra konstnärliga uttryck genom att hämta
+          inspiration från våra egna influenser och personliga "arkiv".
+          Tillsammans flätar vi samman våra unika stilar till ett gemensamt
+          projekt.
+        </p>
+      </div>
+    </header>
+
+    <div class="project-grid">
+      <!-- Kolumn 1 -->
+      <div class="column">
+        <div class="project-item">
+          <img src="https://cdn.glitch.global/8d1d92df-97df-45c1-b822-473cfd258f53/Freyja-1.gif?v=1737930184301" alt="Bild 1" />
+        </div>
+        <div class="project-item">
+          <img src="https://cdn.glitch.global/8d1d92df-97df-45c1-b822-473cfd258f53/_DSC9315.png?v=1737930204992" alt="Bild 2" />
+        </div>
+      </div>
+      <!-- Kolumn 2 -->
+      <div class="column">
+        <div class="project-item">
+          <img src="https://cdn.glitch.global/8d1d92df-97df-45c1-b822-473cfd258f53/_DSC9328.png?v=1737930216614" alt="Bild 2" />
+        </div>
+        <div class="project-item">
+          <img src="https://cdn.glitch.global/8d1d92df-97df-45c1-b822-473cfd258f53/_DSC9332.png?v=1737930218994" alt="Bild 4" />
+        </div>
+      </div>
+    </div>
+    <!-- Footer med e-postadress -->
+    <footer>
+      <p>emmyseeger@hotmail.com</p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projektsida</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Arial", sans-serif;
+      }
+      /* Footer utan bakgrundsfärg */
+      footer {
+        text-align: center;
+        padding: 20px;
+        margin-top: 40px;
+        font-family: courier new;
+      }
+      /* Header */
+      header {
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* Sätter båda kolumnerna till samma bredd */
+        gap: 20px;
+        padding: 40px 10%;
+        position: relative;
+      }
+
+         header a.back-arrow {
+            text-decoration: none;
+            color: black;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 20px;
+            top: 20px;
+        }
+
+      header h1 {
+        font-size: 2rem;
+        margin: 0;
+        text-align: left;
+      }
+
+      header p {
+        font-size: 1rem;
+        margin: 0;
+        margin-bottom: 1rem; /* Lägg till denna rad för att skapa ett mellanrum */
+        line-height: 1.5;
+        text-align: left;
+        font-family: courier new;
+      }
+
+      /* Grid för bilder */
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(
+          2,
+          1fr
+        ); /* Gör bilderna i två lika breda spalter */
+        gap: 20px;
+        padding: 0 10%;
+        margin-top: 20px;
+      }
+
+      .project-item img {
+        width: 100%;
+        height: auto;
+      }
+
+      /* Video */
+      .project-video {
+        display: flex;
+        justify-content: center;
+        margin: 40px 10%;
+      }
+
+      .project-video iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9; /* Håller en 16:9 förhållande för videon */
+      }
+
+      /* Responsiv design */
+      @media (max-width: 768px) {
+        header {
+          grid-template-columns: 1fr;
+          text-align: left;
+        }
+
+        /* Ändrar pilens position på smalare skärmar */
+        header a.back-arrow {
+          position: static; /* Fjärrar positioneringen så att den hamnar ovanför titeln */
+          margin-bottom: 20px; /* Lägger till lite mellanrum mellan pilen och titeln */
+        }
+
+        header h1 {
+          margin-top: 0; /* Ser till att det inte finns för mycket mellanrum över titeln */
+          margin-bottom: 20px; /* Lägger till lite mellanrum mellan titeln och beskrivningen */
+        }
+
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="https://succulent-iron-postage.glitch.me/#" class="back-arrow"
+        >←</a
+      >
+      <div>
+        <h1>VIVEKA</h1>
+      </div>
+      <div>
+        <p>Projekt andra året på Beckmans i samarbete med form programmet, i grupp med Wilmer Norrby, Emma Bjelke och Sara Matsoms.</p>
+        <p>Hur skapar man ett möte mellan olika individer, som till ytan är helt okända för varandra?</p>
+        <p>Vi skapade VIVEKA, ett litet portabelt växthus som ska kunna placeras varsomhelst. Det finns ingen tydlig avsändare eller en uttalad person som ska sköta om den. Ansvaret att hålla växten vid liv faller på individerna - för att växten ska må bra och skötas om så kommer de behöva samarbeta.</p>
+      </div>
+    </header>
+
+    <div class="project-grid">
+      <!-- Bild 1 -->
+      <div class="project-item">
+        <img
+          src="https://cdn.glitch.global/b816c2e8-bbb2-4c61-aa70-f955b4b67594/Viveka_la%CC%8Ag1.png?v=1737630312237"
+          alt="Bild 1"
+        />
+      </div>
+      <!-- Bild 2 -->
+      <div class="project-item">
+        <img
+          src="https://cdn.glitch.global/b816c2e8-bbb2-4c61-aa70-f955b4b67594/viveka_la%CC%8Ag3.png?v=1737630317193"
+          alt="Bild 2"
+        />
+      </div>
+      <!-- Bild 3 -->
+      <div class="project-item">
+        <img
+          src="https://cdn.glitch.global/b816c2e8-bbb2-4c61-aa70-f955b4b67594/viveka_la%CC%8Ag4.png?v=1737630320564"
+          alt="Bild 3"
+        />
+      </div>
+      <!-- Bild 4 -->
+      <div class="project-item">
+        <img
+          src="https://cdn.glitch.me/b816c2e8-bbb2-4c61-aa70-f955b4b67594/viveka_la%CC%8Ag2.png?v=1737630314877"
+          alt="Bild 4"
+        />
+      </div>
+    </div>
+
+    <!-- Footer med e-postadress -->
+    <footer>
+      <p>emmyseeger@hotmail.com</p>
+    </footer>
+  </body>
+</html>
