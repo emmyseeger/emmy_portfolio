@@ -27,30 +27,35 @@
       src: url("ActsofService-Regular.otf") format("opentype");
       font-weight: 400;
       font-style: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: "Acts of Service";
       src: url("ActsofService-Medium.otf") format("opentype");
       font-weight: 500;
       font-style: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: "Acts of Service";
       src: url("ActsofService-Mediumitalic.otf") format("opentype");
       font-weight: 500;
       font-style: italic;
+      font-display: swap;
     }
     @font-face {
       font-family: "Acts of Service Sans";
       src: url("ActsofService-Sans.otf") format("opentype");
       font-weight: 400;
       font-style: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: "Acts of Service Sans";
       src: url("ActsofService-SansItalic.otf") format("opentype");
       font-weight: 400;
       font-style: italic;
+      font-display: swap;
     }
 
     :root {
@@ -749,11 +754,10 @@
     }
 
     .sans-regular {
-      font-family: "Acts of Service Sans", sans-serif;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
       font-weight: 400;
       font-style: normal;
-      letter-spacing: 0.08
-      em;
+      letter-spacing: 0.08em;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
       font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures contextual;
@@ -1061,7 +1065,7 @@
       </div>
       <section class="type-strip">
         <div class="strip-inner">
-          <p class="strip-label" id="caption-sans">Acts of Service Sans</p>
+          <p class="strip-label" id="caption-sans">Acts of Service · Sans</p>
           <p
             class="specimen-hero sans-regular specimen-preview"
             contenteditable="true"
@@ -1069,7 +1073,7 @@
             role="textbox"
             tabindex="0"
             aria-multiline="true"
-            aria-labelledby="caption-sans">ORDER READY · PICK UP AT COUN TER (+46)72351890 Thank you, welcome back!</p>
+            aria-labelledby="caption-sans">ORDER READY · PICK UP AT COUNTER (+46)72351890 Thank you, welcome back!</p>
         </div>
       </section>
     </div>
@@ -1749,6 +1753,28 @@
         return normalized.replace(/[^0-9A-Za-zÀ-ÖØ-öø-ÿÅÄÖåäö .,;:!?'"“”‘’()\[\]{}\-–—_+\/\\&@#%*=|<>~^`·…§°\n]/g, "");
       }
 
+      function syncAllSpecimenSizes() {
+        document.querySelectorAll(".specimen-group").forEach(function (group) {
+          var slider = group.querySelector(".specimen-pt-slider");
+          var ptLabel = group.querySelector(".specimen-pt-value");
+          var previews = group.querySelectorAll(".specimen-preview[contenteditable]");
+          if (!slider || previews.length === 0) {
+            return;
+          }
+          var pt = parseFloat(slider.value, 10);
+          if (isNaN(pt)) {
+            return;
+          }
+          var px = ptToPx(pt);
+          previews.forEach(function (p) {
+            p.style.fontSize = px + "px";
+          });
+          if (ptLabel) {
+            ptLabel.textContent = Math.round(pt) + " pt";
+          }
+        });
+      }
+
       function bindSpecimenGroup(group) {
         var slider = group.querySelector(".specimen-pt-slider");
         var ptLabel = group.querySelector(".specimen-pt-value");
@@ -1821,27 +1847,10 @@
       }
 
       document.querySelectorAll(".specimen-group").forEach(bindSpecimenGroup);
-      listenMq(mobileViewportMq, function () {
-        document.querySelectorAll(".specimen-group").forEach(function (group) {
-          var slider = group.querySelector(".specimen-pt-slider");
-          var ptLabel = group.querySelector(".specimen-pt-value");
-          var previews = group.querySelectorAll(".specimen-preview[contenteditable]");
-          if (!slider || previews.length === 0) {
-            return;
-          }
-          var pt = parseFloat(slider.value, 10);
-          if (isNaN(pt)) {
-            return;
-          }
-          var px = ptToPx(pt);
-          previews.forEach(function (p) {
-            p.style.fontSize = px + "px";
-          });
-          if (ptLabel) {
-            ptLabel.textContent = Math.round(pt) + " pt";
-          }
-        });
-      });
+      listenMq(mobileViewportMq, syncAllSpecimenSizes);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(syncAllSpecimenSizes);
+      }
     })();
   </script>
 </body>
