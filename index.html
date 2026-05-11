@@ -1,0 +1,1848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acts of Service — typeface</title>
+  <script>
+    (function () {
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      function scrollTopNow() {
+        window.scrollTo(0, 0);
+      }
+      scrollTopNow();
+      window.addEventListener("load", function () {
+        scrollTopNow();
+        requestAnimationFrame(function () {
+          requestAnimationFrame(scrollTopNow);
+        });
+      });
+    })();
+  </script>
+  <style>
+    @font-face {
+      font-family: "Acts of Service";
+      src: url("ActsofService-Regular.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Acts of Service";
+      src: url("ActsofService-Medium.otf") format("opentype");
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Acts of Service";
+      src: url("ActsofService-Mediumitalic.otf") format("opentype");
+      font-weight: 500;
+      font-style: italic;
+    }
+    @font-face {
+      font-family: "Acts of Service Sans";
+      src: url("ActsofService-Sans.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Acts of Service Sans";
+      src: url("ActsofService-SansItalic.otf") format("opentype");
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    :root {
+      --ink: #0a0a0a;
+      --letter-cycle: 22s;
+      /* Accent = bakgrund från bild. All text är svart (--ink). */
+      --accent: #8a8a8a;
+      --paper: var(--accent);
+      --hero-bg: var(--accent);
+      --slider-track: rgba(10, 10, 10, 0.32);
+      --accent-soft: rgba(10, 10, 10, 0.14);
+      --accent-border: rgba(10, 10, 10, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    html {
+      scroll-padding-top: 1.25rem;
+      overflow-anchor: none;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-weight: 400;
+      background: var(--accent);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.35s ease;
+    }
+
+    /* --- Helskärm hero --- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1rem, 4vw, 2.5rem);
+      overflow: hidden;
+      background: var(--accent);
+    }
+
+    .hero-float-img {
+      position: absolute;
+      z-index: 0;
+      width: clamp(18rem, 56vw, 46rem);
+      height: clamp(11.5rem, 30vw, 26rem);
+      object-fit: cover;
+      border-radius: 50%;
+      box-sizing: border-box;
+      border: 2px solid rgba(10, 10, 10, 0.4);
+      pointer-events: none;
+      box-shadow: none;
+      transform-origin: center center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      -webkit-mask-image: radial-gradient(
+        ellipse 92% 84% at 50% 50%,
+        #000 36%,
+        rgba(0, 0, 0, 0.62) 56%,
+        rgba(0, 0, 0, 0.15) 72%,
+        transparent 86%
+      );
+      mask-image: radial-gradient(
+        ellipse 92% 84% at 50% 50%,
+        #000 36%,
+        rgba(0, 0, 0, 0.62) 56%,
+        rgba(0, 0, 0, 0.15) 72%,
+        transparent 86%
+      );
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+    }
+
+    .hero-float-img.is-visible {
+      opacity: 1;
+    }
+
+    @keyframes weightShift {
+      0%, 100% {
+        font-family: "Acts of Service", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      33.33% {
+        font-family: "Acts of Service", serif;
+        font-weight: 500;
+        font-style: normal;
+      }
+      66.66% {
+        font-family: "Acts of Service Sans", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+    }
+
+    .wordmark {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: var(--ink);
+    }
+
+    .about-trigger {
+      position: fixed;
+      top: clamp(0.8rem, 2.5vw, 1.4rem);
+      right: clamp(0.8rem, 2.5vw, 1.4rem);
+      z-index: 50;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      padding: 0.42rem 0.88rem 0.4rem;
+      background: color-mix(in srgb, var(--accent) 70%, #fff 30%);
+      color: var(--ink);
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: 0.73rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .about-trigger:hover {
+      opacity: 0.86;
+      transform: translateY(-1px);
+    }
+
+    .about-trigger:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .about-page {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      background: color-mix(in srgb, var(--accent) 88%, #fff 12%);
+      color: var(--ink);
+      overflow-y: auto;
+    }
+
+    .about-page[hidden] {
+      display: none;
+    }
+
+    .about-page-inner {
+      width: min(78rem, 94vw);
+      margin: 0 auto;
+      padding: clamp(5rem, 10vw, 8rem) clamp(1rem, 4vw, 2.5rem) clamp(2.2rem, 6vw, 4rem);
+    }
+
+    .about-page-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: clamp(1.4rem, 3vw, 2rem);
+      padding-bottom: 0;
+    }
+
+    .about-page-title {
+      margin: 0;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-size: clamp(1.25rem, 2.8vw, 2rem);
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.65em;
+      align-items: center;
+    }
+
+    .about-page-title .about-word {
+      display: inline-flex;
+      gap: 0.02em;
+      align-items: center;
+    }
+
+    .about-close {
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      padding: 0.4rem 0.75rem;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .about-close:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .about-page-text {
+      margin: 0;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: clamp(1.02rem, 1.6vw, 1.28rem);
+      line-height: 1.52;
+      letter-spacing: 0.01em;
+      max-width: 64ch;
+    }
+
+    .about-avtryck {
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-style: italic;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+
+    .about-page-content {
+      display: grid;
+      grid-template-columns: minmax(16rem, 30rem) minmax(20rem, 1fr);
+      gap: clamp(1.1rem, 3.5vw, 2.6rem);
+      align-items: start;
+    }
+
+    .about-page-image-wrap {
+      position: relative;
+      padding: 0;
+      background: var(--paper);
+    }
+
+    .about-page-image {
+      width: 100%;
+      border: 1px solid var(--accent-soft);
+      border-radius: 0;
+      background: var(--paper);
+      object-fit: cover;
+    }
+
+    .wordmark-lines {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.02em;
+    }
+
+    .wordmark-lines > .word-line:first-child {
+      margin-bottom: 0.125em;
+    }
+
+    .word-line {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      line-height: 0.9;
+      letter-spacing: 0.035em;
+      font-size: clamp(4rem, 19vw, 14rem);
+    }
+
+    .word-line.mid {
+      font-size: clamp(2.85rem, 12vw, 9rem);
+      margin: 0.04em 0;
+      letter-spacing: 0.055em;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .about-trigger {
+        top: 0.7rem;
+        right: 0.7rem;
+      }
+
+      .about-page-inner {
+        width: 100%;
+        padding: 4.6rem 1rem 2rem;
+      }
+
+      .about-page-content {
+        grid-template-columns: 1fr;
+      }
+
+      .wordmark-lines {
+        gap: 0.05em;
+      }
+
+      .word-line {
+        flex-wrap: nowrap;
+        max-width: 100%;
+        font-size: clamp(2.85rem, 13.8vw, 8.9rem);
+        letter-spacing: 0.03em;
+      }
+
+      .word-line.mid {
+        font-size: clamp(2.2rem, 9.2vw, 6.2rem);
+        letter-spacing: 0.052em;
+      }
+
+      .hero-float-img {
+        width: clamp(13.5rem, 62vw, 22rem);
+        height: clamp(8.6rem, 40vw, 14.5rem);
+        opacity: 0.72;
+      }
+    }
+
+    .letter {
+      display: inline-block;
+      animation: weightShift var(--letter-cycle) cubic-bezier(0.45, 0, 0.55, 1) infinite;
+      animation-delay: var(--letter-delay, 0s);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .letter {
+        animation: none;
+        font-family: "Acts of Service", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+    }
+
+    /* --- Showcase: helbredd --- */
+    .panel {
+      width: 100%;
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      border-top: none;
+      background: color-mix(in srgb, var(--accent) 94%, #fff 6%);
+    }
+
+    .project-intro {
+      width: 100%;
+      padding: clamp(2.35rem, 6vw, 4.4rem) clamp(1.25rem, 6vw, 5rem);
+      background: var(--paper);
+      border-bottom: 1px solid var(--accent-soft);
+      display: flex;
+      justify-content: center;
+    }
+
+    .project-intro p {
+      margin: 0;
+      max-width: min(86ch, 94vw);
+      font-family: "Acts of Service", serif;
+      font-weight: 400;
+      font-style: normal;
+      font-size: clamp(1.16rem, 2.25vw, 1.72rem);
+      line-height: 1.52;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: baseline;
+      gap: 0.32em 0.42em;
+    }
+
+    .morph-cell {
+      display: inline-grid;
+      grid-template: auto / auto;
+      justify-items: stretch;
+      align-items: start;
+      min-width: var(--morph-cell-w, 2ch);
+      min-height: var(--morph-cell-h, auto);
+      vertical-align: baseline;
+      cursor: default;
+      outline: none;
+      border-radius: 2px;
+      --morph-switch-delay: 0.15s;
+      --mobile-reveal: 0;
+    }
+
+    .morph-cell:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .morph-layer {
+      grid-area: 1 / 1;
+      width: 100%;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: inherit;
+      text-align: center;
+      white-space: nowrap;
+      transition: opacity 0s linear 0s;
+    }
+
+    .morph-layer--serif {
+      font-family: "Acts of Service", serif;
+      opacity: 1;
+    }
+
+    .morph-layer--sans {
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .morph-cell:hover .morph-layer--serif,
+    .morph-cell:focus-visible .morph-layer--serif {
+      opacity: 0;
+      transition-delay: var(--morph-switch-delay);
+    }
+
+    .morph-cell:hover .morph-layer--sans,
+    .morph-cell:focus-visible .morph-layer--sans {
+      opacity: 1;
+      transition-delay: var(--morph-switch-delay);
+    }
+
+    .morph-cell.morph-cell--proximity-reveal .morph-layer--serif {
+      opacity: 0;
+      transition-delay: 0s;
+    }
+
+    .morph-cell.morph-cell--proximity-reveal .morph-layer--sans {
+      opacity: 1;
+      transition-delay: 0s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .morph-layer {
+        transition: none;
+      }
+
+      .morph-cell:hover .morph-layer--serif,
+      .morph-cell:focus-visible .morph-layer--serif {
+        opacity: 1;
+      }
+
+      .morph-cell:hover .morph-layer--sans,
+      .morph-cell:focus-visible .morph-layer--sans {
+        opacity: 0;
+      }
+
+      .morph-cell.morph-cell--proximity-reveal .morph-layer--serif {
+        opacity: 1;
+      }
+
+      .morph-cell.morph-cell--proximity-reveal .morph-layer--sans {
+        opacity: 0;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .morph-cell {
+        --morph-switch-delay: 0s;
+      }
+
+      .morph-layer {
+        transition: none;
+      }
+
+      .morph-layer--serif {
+        opacity: 1;
+      }
+
+      .morph-layer--sans {
+        opacity: 0;
+      }
+
+      .morph-cell.morph-cell--mobile-regular .morph-layer--serif {
+        opacity: 0;
+      }
+
+      .morph-cell.morph-cell--mobile-regular .morph-layer--sans {
+        opacity: 1;
+      }
+
+      .morph-cell:hover .morph-layer--serif,
+      .morph-cell:focus-visible .morph-layer--serif {
+        opacity: 1;
+        transition-delay: 0s;
+      }
+
+      .morph-cell:hover .morph-layer--sans,
+      .morph-cell:focus-visible .morph-layer--sans {
+        opacity: 0;
+        transition-delay: 0s;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) and (prefers-reduced-motion: reduce) {
+      .morph-layer {
+        transition: none;
+      }
+
+      .morph-layer--serif {
+        opacity: 1;
+      }
+
+      .morph-layer--sans {
+        opacity: 0;
+      }
+
+      .morph-cell:hover .morph-layer--serif,
+      .morph-cell:focus-visible .morph-layer--serif {
+        opacity: 1;
+      }
+
+      .morph-cell:hover .morph-layer--sans,
+      .morph-cell:focus-visible .morph-layer--sans {
+        opacity: 0;
+      }
+
+      .morph-cell.morph-cell--mobile-regular .morph-layer--serif {
+        opacity: 1;
+      }
+
+      .morph-cell.morph-cell--mobile-regular .morph-layer--sans {
+        opacity: 0;
+      }
+    }
+
+    .type-strip {
+      width: 100%;
+      padding: clamp(2.8rem, 8vw, 6.1rem) clamp(1.25rem, 6vw, 5rem);
+      background: var(--accent);
+      color: var(--ink);
+    }
+
+    .strip-inner {
+      margin: 0 auto;
+    }
+
+    .strip-label {
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--ink);
+      opacity: 0.64;
+      margin: 0 0 clamp(1rem, 2.5vw, 1.5rem);
+    }
+
+    .specimen-hero {
+      font-size: clamp(3.5rem, 14vw, 12rem);
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      margin: 0;
+      max-width: none;
+    }
+
+    .specimen-preview {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      hyphens: none;
+      -webkit-hyphens: none;
+      caret-color: var(--ink);
+      cursor: text;
+      min-height: 0.25em;
+    }
+
+    .specimen-preview:hover {
+      cursor: text;
+    }
+
+    .specimen-preview:focus {
+      outline: none;
+    }
+
+    .specimen-preview:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 6px;
+    }
+
+    .specimen-group + .specimen-group {
+      border-top: 1px solid var(--accent-soft);
+    }
+
+    .specimen-controls {
+      width: 100%;
+      padding: clamp(1rem, 3vw, 1.5rem) clamp(1.25rem, 6vw, 5rem);
+      background: color-mix(in srgb, var(--paper) 84%, #fff 16%);
+      border-bottom: 1px solid var(--accent-soft);
+    }
+
+    .specimen-controls .field-label {
+      display: block;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--ink);
+      opacity: 0.68;
+      margin-bottom: 0.45rem;
+    }
+
+    .specimen-size-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem 1rem;
+      max-width: 32rem;
+    }
+
+    .specimen-pt-value {
+      font-size: 0.8rem;
+      letter-spacing: 0.07em;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink);
+      opacity: 0.8;
+    }
+
+    .specimen-pt-slider {
+      display: block;
+      width: 100%;
+      max-width: 32rem;
+      margin-top: 0.45rem;
+      height: 28px;
+      background: transparent;
+      -webkit-appearance: none;
+      appearance: none;
+      accent-color: var(--ink);
+    }
+
+    .specimen-pt-slider:focus {
+      outline: none;
+    }
+
+    .specimen-pt-slider:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 6px;
+      border-radius: 2px;
+    }
+
+    .specimen-pt-slider::-webkit-slider-runnable-track {
+      height: 2px;
+      background: var(--slider-track);
+      border-radius: 0;
+    }
+
+    /* Tumgrepp: kvadrat roterad 45° ↔ diamant (kontrast mot accentbakgrund) */
+    .specimen-pt-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 13px;
+      height: 13px;
+      margin-top: -5.5px;
+      border: none;
+      border-radius: 0;
+      background-color: var(--ink);
+      transform: rotate(45deg);
+      cursor: ew-resize;
+      box-shadow: none;
+    }
+
+    .specimen-pt-slider::-moz-range-track {
+      height: 2px;
+      background: var(--slider-track);
+      border-radius: 0;
+    }
+
+    .specimen-pt-slider::-moz-range-thumb {
+      width: 13px;
+      height: 13px;
+      border: none;
+      border-radius: 0;
+      background-color: var(--ink);
+      transform: rotate(45deg);
+      cursor: ew-resize;
+      box-shadow: none;
+    }
+
+    /* Snitt */
+    .serif-regular {
+      font-family: "Acts of Service", serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .serif-medium {
+      font-family: "Acts of Service", serif;
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    .sans-regular {
+      font-family: "Acts of Service Sans", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      letter-spacing: 0.08
+      em;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+      font-variant-ligatures: common-ligatures discretionary-ligatures historical-ligatures contextual;
+      font-feature-settings:
+        "kern" 1,
+        "liga" 1,
+        "clig" 1,
+        "calt" 1,
+        "dlig" 1,
+        "hlig" 1,
+        "rlig" 1;
+    }
+
+    /* Nedladdning */
+    .takeaway-footer {
+      padding: 0;
+      background: var(--accent);
+      border-top: none;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .takeaway-marquee {
+      width: 100%;
+      overflow: hidden;
+      background: #eeff41;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .takeaway-marquee-track {
+      display: inline-flex;
+      width: max-content;
+      will-change: transform;
+      animation: takeaway-marquee-left 64s linear infinite;
+    }
+
+    .takeaway-marquee-content {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 2.1rem;
+      padding: 0.82rem 2rem 0.74rem;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: clamp(2.4rem, 9vw, 80pt);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      white-space: nowrap;
+      line-height: 0.92;
+    }
+
+    .takeaway-marquee-sep {
+      font-size: 0.88em;
+      line-height: 1;
+    }
+
+    @keyframes takeaway-marquee-left {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .takeaway-body {
+      position: relative;
+      z-index: 1;
+      padding: clamp(2.5rem, 7vw, 4.5rem) clamp(1.25rem, 6vw, 5rem) clamp(3rem, 9vw, 6.5rem);
+    }
+
+    .takeaway-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 52rem;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .takeaway-btn-wrap {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(0.45rem, 2.5vw, 1.1rem);
+    }
+
+    .takeaway-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      max-width: 100%;
+      margin: 0;
+      padding: clamp(0.95rem, 3vw, 1.35rem) clamp(1.35rem, 4.5vw, 2.5rem);
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: clamp(0.72rem, 2.4vw, 0.95rem);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: #eeff41;
+      border: 1px solid var(--ink);
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .takeaway-gate {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.62rem;
+      max-width: 100%;
+      padding: clamp(0.8rem, 2.4vw, 1rem);
+      border: 1px solid var(--accent-soft);
+      border-radius: 1.2rem;
+      background: #eeff41;
+    }
+
+    .takeaway-code-label {
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .takeaway-code-input {
+      width: min(22rem, 86vw);
+      padding: 0.72rem 0.9rem;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--ink);
+    }
+
+    .takeaway-code-input:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+    }
+
+    .takeaway-status {
+      min-height: 1.2em;
+      margin: 0;
+      font-family: "Acts of Service Sans", system-ui, sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      opacity: 0.84;
+    }
+
+    .takeaway-btn:hover {
+      opacity: 0.88;
+    }
+
+    .takeaway-btn:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 5px;
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .takeaway-btn-wrap {
+        flex-direction: column;
+        gap: 0.28rem;
+      }
+
+      .takeaway-code-input {
+        width: min(19rem, 88vw);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .takeaway-marquee-track {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="about-trigger" id="about-open-btn" type="button" aria-controls="about-page">About</button>
+  <section class="hero" aria-labelledby="brand-heading">
+    <img id="hero-float-img" class="hero-float-img" alt="" decoding="async" width="400" height="400" aria-hidden="true" />
+    <h1 class="wordmark" id="brand-heading">
+      <span class="sr-only">Acts of Service</span>
+      <span class="wordmark-lines" aria-hidden="true">
+        <span class="word-line">
+          <span class="letter">A</span><span class="letter">C</span><span class="letter">T</span><span class="letter">S</span>
+        </span>
+        <span class="word-line mid">
+          <span class="letter">O</span><span class="letter">F</span>
+        </span>
+        <span class="word-line">
+          <span class="letter">S</span><span class="letter">E</span><span class="letter">R</span><span class="letter">V</span><span class="letter">I</span><span class="letter">C</span><span class="letter">E</span>
+        </span>
+      </span>
+    </h1>
+  </section>
+
+  <section class="about-page" id="about-page" hidden aria-label="About this project">
+    <div class="about-page-inner">
+      <div class="about-page-head">
+        <h2 class="about-page-title">
+          <span class="about-word">
+            <span class="letter">A</span><span class="letter">B</span><span class="letter">O</span><span class="letter">U</span><span class="letter">T</span>
+          </span>
+          <span class="about-word">
+            <span class="letter">T</span><span class="letter">H</span><span class="letter">I</span><span class="letter">S</span>
+          </span>
+          <span class="about-word">
+            <span class="letter">P</span><span class="letter">R</span><span class="letter">O</span><span class="letter">J</span><span class="letter">E</span><span class="letter">C</span><span class="letter">T</span>
+          </span>
+        </h2>
+        <button type="button" class="about-close" id="about-close-btn">Close</button>
+      </div>
+      <div class="about-page-content">
+        <div class="about-page-image-wrap">
+          <img class="about-page-image" src="Placeholder_About.jpeg" alt="Acts of Service process and material exploration." />
+        </div>
+        <p class="about-page-text">
+          This website is part of my (Emmy Seeger) bachelor’s thesis at Beckmans College of Design,
+          2026, Stockholm.<br><br>Acts of Service is a typeface family developed from traces of service work.
+          The fonts are not drawn from predefined forms, but generated from collected material such as
+          stains, marks and repetitive gestures observed in a restaurant environment. The project explores
+          how knowledge that is usually invisible, relational, collective and bodily, can be translated
+          into typography. They are not designed for clarity, but for presence.<br><br>To this project there is an artist book (in Swedish), exhibited 21&nbsp;&mdash;&nbsp;25&nbsp;May at
+          <span class="about-avtryck">Avtryck</span>, Beckmans College of Design graduation show.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="panel" aria-label="Typeface showcase">
+    <section class="project-intro" aria-label="About the project">
+      <p id="project-intro-text"></p>
+    </section>
+
+    <div class="specimen-group" id="snitt-regular">
+      <div class="specimen-controls">
+        <div class="specimen-size-head">
+          <span class="field-label" id="spec-pt-regular-lab">Regular — point size</span>
+          <span class="specimen-pt-value" id="spec-pt-regular-val" aria-live="polite">120 pt</span>
+        </div>
+        <input type="range" id="spec-pt-regular" class="specimen-pt-slider" min="32" max="220" value="120" step="1" aria-labelledby="spec-pt-regular-lab spec-pt-regular-val" />
+      </div>
+      <section class="type-strip">
+        <div class="strip-inner">
+          <p class="strip-label" id="caption-regular">Acts of Service · Regular</p>
+          <p
+            class="specimen-hero serif-regular specimen-preview"
+            contenteditable="true"
+            spellcheck="false"
+            role="textbox"
+            tabindex="0"
+            aria-multiline="true"
+            aria-labelledby="caption-regular">Could someone cover my shift on Saturday? That would be so kind.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="specimen-group" id="snitt-medium">
+      <div class="specimen-controls">
+        <div class="specimen-size-head">
+          <span class="field-label" id="spec-pt-medium-lab">Medium — point size</span>
+          <span class="specimen-pt-value" id="spec-pt-medium-val" aria-live="polite">120 pt</span>
+        </div>
+        <input type="range" id="spec-pt-medium" class="specimen-pt-slider" min="32" max="220" value="120" step="1" aria-labelledby="spec-pt-medium-lab spec-pt-medium-val" />
+      </div>
+      <section class="type-strip">
+        <div class="strip-inner">
+          <p class="strip-label" id="caption-medium">Acts of Service · Medium</p>
+          <p
+            class="specimen-hero serif-medium specimen-preview"
+            contenteditable="true"
+            spellcheck="false"
+            role="textbox"
+            tabindex="0"
+            aria-multiline="true"
+            aria-labelledby="caption-medium">I am so sorry, I can offer you some peanuts as compensation.</p>
+        </div>
+      </section>
+    </div>
+
+    <div class="specimen-group" id="snitt-sans">
+      <div class="specimen-controls">
+        <div class="specimen-size-head">
+          <span class="field-label" id="spec-pt-sans-lab">Sans — point size</span>
+          <span class="specimen-pt-value" id="spec-pt-sans-val" aria-live="polite">120 pt</span>
+        </div>
+        <input type="range" id="spec-pt-sans" class="specimen-pt-slider" min="32" max="220" value="120" step="1" aria-labelledby="spec-pt-sans-lab spec-pt-sans-val" />
+      </div>
+      <section class="type-strip">
+        <div class="strip-inner">
+          <p class="strip-label" id="caption-sans">Acts of Service Sans</p>
+          <p
+            class="specimen-hero sans-regular specimen-preview"
+            contenteditable="true"
+            spellcheck="false"
+            role="textbox"
+            tabindex="0"
+            aria-multiline="true"
+            aria-labelledby="caption-sans">ORDER READY · PICK UP AT COUN TER (+46)72351890 Thank you, welcome back!</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="takeaway-footer" id="takeaway" aria-label="Download typefaces">
+    <div class="takeaway-body">
+      <div class="takeaway-inner" id="takeaway-download">
+        <div class="takeaway-btn-wrap">
+          <div class="takeaway-gate">
+            <input id="takeaway-code-input" class="takeaway-code-input" type="text" autocomplete="off" spellcheck="false" placeholder="ENTER YOUR ORDER NUMBER" aria-label="Order number" />
+            <p class="takeaway-status" id="takeaway-status" aria-live="polite">Enter a valid order number to download the typefaces.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="takeaway-marquee" aria-hidden="true">
+      <div class="takeaway-marquee-track">
+        <div class="takeaway-marquee-content">
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+        </div>
+        <div class="takeaway-marquee-content">
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+          ZIP. TAKE AWAY! <span class="takeaway-marquee-sep">↑</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      function rgbToHsl(r, g, b) {
+        r /= 255;
+        g /= 255;
+        b /= 255;
+        var max = Math.max(r, g, b);
+        var min = Math.min(r, g, b);
+        var h = 0;
+        var s = 0;
+        var l = (max + min) / 2;
+        if (max !== min) {
+          var d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch (max) {
+            case r:
+              h = (g - b) / d + (g < b ? 6 : 0);
+              break;
+            case g:
+              h = (b - r) / d + 2;
+              break;
+            default:
+              h = (r - g) / d + 4;
+              break;
+          }
+          h /= 6;
+        }
+        return { h: h, s: s, l: l };
+      }
+
+      function hslToRgb(h, s, l) {
+        var r;
+        var g;
+        var b;
+        if (s === 0) {
+          r = g = b = l;
+        } else {
+          var hue2rgb = function (p, q, t) {
+            if (t < 0) {
+              t += 1;
+            }
+            if (t > 1) {
+              t -= 1;
+            }
+            if (t < 1 / 6) {
+              return p + (q - p) * 6 * t;
+            }
+            if (t < 1 / 2) {
+              return q;
+            }
+            if (t < 2 / 3) {
+              return p + (q - p) * (2 / 3 - t) * 6;
+            }
+            return p;
+          };
+          var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+          var p = 2 * l - q;
+          r = hue2rgb(p, q, h + 1 / 3);
+          g = hue2rgb(p, q, h);
+          b = hue2rgb(p, q, h - 1 / 3);
+        }
+        return {
+          r: Math.round(r * 255),
+          g: Math.round(g * 255),
+          b: Math.round(b * 255)
+        };
+      }
+
+      /** Viktar mättade pixlar — “starkaste” kromatiska tonen */
+      function extractAccentRgb(img) {
+        var canvas = document.createElement("canvas");
+        var sz = 72;
+        canvas.width = sz;
+        canvas.height = sz;
+        var ctx = canvas.getContext("2d", { willReadFrequently: true });
+        try {
+          ctx.drawImage(img, 0, 0, sz, sz);
+        } catch (err) {
+          return { r: 120, g: 120, b: 120 };
+        }
+        var d = ctx.getImageData(0, 0, sz, sz).data;
+        var wr = 0;
+        var wg = 0;
+        var wb = 0;
+        var wsum = 0;
+        var i;
+        var r;
+        var g;
+        var b;
+        var hsl;
+        var w;
+        for (i = 0; i < d.length; i += 4) {
+          r = d[i];
+          g = d[i + 1];
+          b = d[i + 2];
+          hsl = rgbToHsl(r, g, b);
+          if (hsl.s < 0.1 || hsl.l < 0.06 || hsl.l > 0.96) {
+            continue;
+          }
+          w = hsl.s * hsl.s * (0.35 + 0.65 * (1 - Math.abs(hsl.l - 0.5) * 1.4));
+          wr += r * w;
+          wg += g * w;
+          wb += b * w;
+          wsum += w;
+        }
+        if (wsum < 0.5) {
+          var best = 0;
+          var br = 110;
+          var bg = 110;
+          var bb = 110;
+          for (i = 0; i < d.length; i += 8) {
+            r = d[i];
+            g = d[i + 1];
+            b = d[i + 2];
+            hsl = rgbToHsl(r, g, b);
+            if (hsl.s > best) {
+              best = hsl.s;
+              br = r;
+              bg = g;
+              bb = b;
+            }
+          }
+          r = br;
+          g = bg;
+          b = bb;
+        } else {
+          r = Math.round(wr / wsum);
+          g = Math.round(wg / wsum);
+          b = Math.round(wb / wsum);
+        }
+        hsl = rgbToHsl(r, g, b);
+        hsl.s = Math.min(1, hsl.s * 1.08 + 0.06);
+        hsl.l = Math.min(0.55, Math.max(0.26, hsl.l * 0.98 + 0.02));
+        var out = hslToRgb(hsl.h, hsl.s, hsl.l);
+        return { r: out.r, g: out.g, b: out.b };
+      }
+
+      /** Fasta accentfärger för utvalda motiv (övriga: extraheras ur bilden). */
+      var ACCENT_HEX_BY_AOS = {
+        1: "#617571",
+        3: "#fbfcac",
+        9: "#ff8aa6",
+        12: "#8159f4",
+        16: "#ffffff",
+        17: "#bd8c95",
+        18: "#ff2e13"
+      };
+
+      /** AOS6: lyfter mättnad och ljushet så sidaccenten känns fräschare. */
+      function boostAos6Accent(rgb) {
+        var hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+        hsl.s = Math.min(1, hsl.s * 1.4 + 0.15);
+        hsl.l = Math.min(0.78, Math.max(0.46, hsl.l * 1.16 + 0.11));
+        var out = hslToRgb(hsl.h, hsl.s, hsl.l);
+        return { r: out.r, g: out.g, b: out.b };
+      }
+
+      function applyAccentFromImage(img, aosIndex) {
+        var root = document.documentElement;
+        var hex = ACCENT_HEX_BY_AOS[aosIndex];
+        if (hex) {
+          root.style.setProperty("--accent", hex);
+        } else {
+          var rgb = extractAccentRgb(img);
+          if (aosIndex === 6) {
+            rgb = boostAos6Accent(rgb);
+          }
+          root.style.setProperty("--accent", "rgb(" + rgb.r + ", " + rgb.g + ", " + rgb.b + ")");
+        }
+        root.style.setProperty("--accent-soft", "rgba(10, 10, 10, 0.14)");
+        root.style.setProperty("--accent-border", "rgba(10, 10, 10, 0.2)");
+      }
+
+      function placeHeroFloatImg(img) {
+        var isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+        var spots;
+        if (isMobile) {
+          spots = [
+            /* Undre positioner */
+            { top: "auto", left: "8%", right: "auto", bottom: "7%" },
+            { top: "auto", left: "auto", right: "8%", bottom: "7%" },
+            { top: "auto", left: "14%", right: "auto", bottom: "14%" },
+            { top: "auto", left: "auto", right: "14%", bottom: "14%" },
+            { top: "auto", left: "26%", right: "auto", bottom: "10%" },
+            /* Ovansida, men i horn for att inte ligga over ordmarken */
+            { top: "5%", left: "5%", right: "auto", bottom: "auto" },
+            { top: "5%", left: "auto", right: "5%", bottom: "auto" },
+            { top: "18%", left: "3%", right: "auto", bottom: "auto" },
+            { top: "18%", left: "auto", right: "3%", bottom: "auto" }
+          ];
+        } else {
+          spots = [
+            { top: "8%", left: "4%", right: "auto", bottom: "auto" },
+            { top: "10%", left: "auto", right: "5%", bottom: "auto" },
+            { top: "auto", left: "6%", right: "auto", bottom: "14%" },
+            { top: "auto", left: "auto", right: "6%", bottom: "12%" },
+            { top: "38%", left: "3%", right: "auto", bottom: "auto" },
+            { top: "40%", left: "auto", right: "4%", bottom: "auto" },
+            { top: "auto", left: "4%", right: "auto", bottom: "38%" },
+            { top: "auto", left: "auto", right: "5%", bottom: "36%" }
+          ];
+        }
+        var spot = spots[Math.floor(Math.random() * spots.length)];
+        img.style.top = spot.top;
+        img.style.left = spot.left;
+        img.style.right = spot.right;
+        img.style.bottom = spot.bottom;
+        if (isMobile || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          img.style.transform = "none";
+        } else {
+          var rot = (Math.random() * 26 - 13).toFixed(2);
+          img.style.transform = "rotate(" + rot + "deg)";
+        }
+      }
+
+      var heroImg = document.getElementById("hero-float-img");
+      if (heroImg) {
+        /** Fast ordning 1–20 (blandad men beständig). Nästa bild vid varje sidladdning. */
+        var HERO_LOOP_ORDER = [
+          3, 11, 7, 19, 2, 15, 9, 4, 20, 1, 8, 14, 6, 12, 17, 5, 13, 16, 10, 18
+        ];
+        var loopStr = sessionStorage.getItem("aosHeroLoopIdx");
+        var loopPos = loopStr !== null ? parseInt(loopStr, 10) : 0;
+        if (isNaN(loopPos) || loopPos < 0 || loopPos >= HERO_LOOP_ORDER.length) {
+          loopPos = 0;
+        }
+        var heroIdx = HERO_LOOP_ORDER[loopPos];
+        sessionStorage.setItem("aosHeroLoopIdx", String((loopPos + 1) % HERO_LOOP_ORDER.length));
+        var heroImgDone = false;
+        function onHeroImgReady() {
+          if (heroImgDone) {
+            return;
+          }
+          heroImgDone = true;
+          applyAccentFromImage(heroImg, heroIdx);
+          requestAnimationFrame(function () {
+            placeHeroFloatImg(heroImg);
+          });
+          heroImg.classList.add("is-visible");
+        }
+        heroImg.addEventListener("load", onHeroImgReady);
+        heroImg.addEventListener("error", function () {
+          heroImg.remove();
+        });
+        heroImg.src = "AOS" + heroIdx + ".jpeg";
+        if (heroImg.complete) {
+          onHeroImgReady();
+        }
+        window.addEventListener("resize", function () {
+          if (heroImgDone) {
+            placeHeroFloatImg(heroImg);
+          }
+        });
+      }
+
+      var raw = getComputedStyle(document.documentElement).getPropertyValue("--letter-cycle").trim();
+      var cycleSec = parseFloat(raw);
+      if (!cycleSec || cycleSec <= 0) {
+        cycleSec = 22;
+      }
+
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        document.querySelectorAll(".wordmark-lines .letter, .about-page-title .letter").forEach(function (el) {
+          el.style.setProperty("--letter-delay", -Math.random() * cycleSec + "s");
+        });
+      }
+
+      (function setupAboutPageToggle() {
+        var openBtn = document.getElementById("about-open-btn");
+        var closeBtn = document.getElementById("about-close-btn");
+        var page = document.getElementById("about-page");
+        if (!openBtn || !closeBtn || !page) {
+          return;
+        }
+
+        function openAbout() {
+          page.hidden = false;
+          document.body.style.overflow = "hidden";
+          closeBtn.focus();
+        }
+
+        function closeAbout() {
+          page.hidden = true;
+          document.body.style.overflow = "";
+          openBtn.focus();
+        }
+
+        openBtn.addEventListener("click", openAbout);
+        closeBtn.addEventListener("click", closeAbout);
+        page.addEventListener("click", function (e) {
+          if (e.target === page) {
+            closeAbout();
+          }
+        });
+        window.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && !page.hidden) {
+            closeAbout();
+          }
+        });
+      })();
+
+      var PROJECT_INTRO_TEXT =
+        "This project begins with a kind of knowledge that is rarely visible.\n" +
+        "A knowledge that is not formulated in words, but emerges through action. For several years I have worked in service. Work that largely consists of adjusting, repeating, and adapting to others. It is about reading situations, keeping pace, and making things function, often without being noticed. This kind of labor rarely leaves lasting results, but it does leave traces.\n" +
+        "In this project I have collected such traces in the form of stains and temporary marks from ongoing work. By processing these, I developed a typeface family where forms are not drawn first, but grown out of material. The work explores what happens when typography does not begin with readability or systems, but with action, repetition, and bodily presence.";
+
+      function buildProjectIntroMorphCells() {
+        var p = document.getElementById("project-intro-text");
+        if (!p || !PROJECT_INTRO_TEXT) {
+          return;
+        }
+        p.textContent = "";
+        var tokens = PROJECT_INTRO_TEXT.trim().split(/\s+/).filter(Boolean);
+        tokens.forEach(function (tok) {
+          var cell = document.createElement("span");
+          cell.className = "morph-cell";
+          cell.setAttribute("aria-label", tok);
+          var serif = document.createElement("span");
+          serif.className = "morph-layer morph-layer--serif";
+          serif.setAttribute("aria-hidden", "true");
+          serif.textContent = tok;
+          var sans = document.createElement("span");
+          sans.className = "morph-layer morph-layer--sans";
+          sans.setAttribute("aria-hidden", "true");
+          sans.textContent = tok;
+          cell.appendChild(serif);
+          cell.appendChild(sans);
+          p.appendChild(cell);
+        });
+      }
+
+      buildProjectIntroMorphCells();
+
+      function sizeMorphCells() {
+        var title = document.getElementById("project-intro-text");
+        if (!title) {
+          return;
+        }
+        var cells = title.querySelectorAll(".morph-cell");
+        if (!cells.length) {
+          return;
+        }
+        var cs = getComputedStyle(title);
+        var lineHeight = cs.lineHeight;
+        if (!lineHeight || lineHeight === "normal") {
+          lineHeight = "1.48";
+        }
+        var probe = document.createElement("span");
+        probe.setAttribute("aria-hidden", "true");
+        probe.style.cssText =
+          "position:absolute;left:-9999px;top:0;visibility:hidden;pointer-events:none;white-space:nowrap;font-weight:400;font-style:normal;line-height:" +
+          lineHeight +
+          ";";
+        probe.style.fontSize = cs.fontSize;
+        probe.style.letterSpacing = cs.letterSpacing;
+        document.body.appendChild(probe);
+        cells.forEach(function (cell) {
+          var label = cell.getAttribute("aria-label");
+          if (!label) {
+            return;
+          }
+          probe.textContent = label;
+          probe.style.fontFamily = '"Acts of Service", serif';
+          var rectSerif = probe.getBoundingClientRect();
+          probe.style.fontFamily = '"Acts of Service Sans", system-ui, sans-serif';
+          var rectSans = probe.getBoundingClientRect();
+          var w = Math.ceil(Math.max(rectSerif.width, rectSans.width, 4)) + 6;
+          var h = Math.ceil(Math.max(rectSerif.height, rectSans.height, 4)) + 2;
+          cell.style.setProperty("--morph-cell-w", w + "px");
+          cell.style.setProperty("--morph-cell-h", h + "px");
+        });
+        probe.remove();
+      }
+
+      sizeMorphCells();
+      window.addEventListener("resize", sizeMorphCells);
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(function () {
+          sizeMorphCells();
+        });
+      }
+
+      var mobileViewportMq = window.matchMedia("(hover: none) and (pointer: coarse)");
+      var reduceMotionMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      function listenMq(mq, fn) {
+        if (mq.addEventListener) {
+          mq.addEventListener("change", fn);
+        } else if (mq.addListener) {
+          mq.addListener(fn);
+        }
+      }
+
+      function setupIntroMobileScrollReveal() {
+        var intro = document.getElementById("project-intro-text");
+        if (!intro) {
+          return;
+        }
+        var rafId = 0;
+        var rowIndexByCell = [];
+        var rowCount = 0;
+
+        function buildRowMap() {
+          rowIndexByCell = [];
+          rowCount = 0;
+          var cells = intro.querySelectorAll(".morph-cell");
+          if (!cells.length) {
+            return;
+          }
+          var rows = [];
+          cells.forEach(function (cell, idx) {
+            var top = Math.round(cell.offsetTop);
+            var found = -1;
+            var r;
+            for (r = 0; r < rows.length; r++) {
+              if (Math.abs(rows[r] - top) <= 2) {
+                found = r;
+                break;
+              }
+            }
+            if (found === -1) {
+              rows.push(top);
+              found = rows.length - 1;
+            }
+            rowIndexByCell[idx] = found;
+          });
+          rowCount = rows.length;
+        }
+
+        function apply() {
+          rafId = 0;
+          var cells = intro.querySelectorAll(".morph-cell");
+          if (!cells.length) {
+            return;
+          }
+          if (!mobileViewportMq.matches || reduceMotionMq.matches) {
+            cells.forEach(function (cell) {
+              cell.classList.remove("morph-cell--mobile-regular");
+            });
+            return;
+          }
+          var rect = intro.getBoundingClientRect();
+          var vh = window.innerHeight || document.documentElement.clientHeight || 1;
+          var enterY = vh * 0.64;
+          var exitY = -rect.height * 0.55;
+          var progress = (enterY - rect.top) / (enterY - exitY);
+          progress = Math.max(0, Math.min(1, progress));
+          var easedProgress = Math.pow(progress, 1.55);
+          if (rowCount === 0 || rowIndexByCell.length !== cells.length) {
+            buildRowMap();
+          }
+          var centerRow = easedProgress * Math.max(0, rowCount - 1);
+          cells.forEach(function (cell, idx) {
+            var rowIdx = rowIndexByCell[idx] || 0;
+            var dist = Math.abs(rowIdx - centerRow);
+            /* Visa ungefär tre rader samtidigt som Sans-zon. */
+            if (dist <= 1.5) {
+              cell.classList.add("morph-cell--mobile-regular");
+            } else {
+              cell.classList.remove("morph-cell--mobile-regular");
+            }
+          });
+        }
+
+        function schedule() {
+          if (rafId) {
+            return;
+          }
+          rafId = requestAnimationFrame(apply);
+        }
+
+        schedule();
+        window.addEventListener("scroll", schedule, { passive: true });
+        window.addEventListener("resize", function () {
+          buildRowMap();
+          schedule();
+        });
+        listenMq(mobileViewportMq, schedule);
+        listenMq(reduceMotionMq, schedule);
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () {
+            buildRowMap();
+            schedule();
+          });
+        }
+      }
+
+      setupIntroMobileScrollReveal();
+
+      function setupIntroDesktopHoverRadius() {
+        var intro = document.getElementById("project-intro-text");
+        if (!intro) {
+          return;
+        }
+        var radiusPx = 170;
+        var rafPending = false;
+        var lastX = 0;
+        var lastY = 0;
+
+        function clearProximity() {
+          intro.querySelectorAll(".morph-cell--proximity-reveal").forEach(function (cell) {
+            cell.classList.remove("morph-cell--proximity-reveal");
+          });
+        }
+
+        function applyProximity() {
+          rafPending = false;
+          if (mobileViewportMq.matches || reduceMotionMq.matches) {
+            clearProximity();
+            return;
+          }
+          var cells = intro.querySelectorAll(".morph-cell");
+          cells.forEach(function (cell) {
+            var rect = cell.getBoundingClientRect();
+            var cx = rect.left + rect.width / 2;
+            var cy = rect.top + rect.height / 2;
+            var dx = cx - lastX;
+            var dy = cy - lastY;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist <= radiusPx) {
+              cell.classList.add("morph-cell--proximity-reveal");
+            } else {
+              cell.classList.remove("morph-cell--proximity-reveal");
+            }
+          });
+        }
+
+        intro.addEventListener("mousemove", function (e) {
+          lastX = e.clientX;
+          lastY = e.clientY;
+          if (rafPending) {
+            return;
+          }
+          rafPending = true;
+          requestAnimationFrame(applyProximity);
+        });
+
+        intro.addEventListener("mouseleave", function () {
+          clearProximity();
+        });
+
+        listenMq(mobileViewportMq, clearProximity);
+        listenMq(reduceMotionMq, clearProximity);
+      }
+
+      setupIntroDesktopHoverRadius();
+
+      function applyMobileSpecimenPtDefault() {
+        if (!mobileViewportMq.matches) {
+          return;
+        }
+        document.querySelectorAll(".specimen-pt-slider").forEach(function (slider) {
+          slider.value = "40";
+        });
+        document.querySelectorAll(".specimen-pt-value").forEach(function (label) {
+          label.textContent = "40 pt";
+        });
+      }
+
+      applyMobileSpecimenPtDefault();
+
+      (function setupTakeawayCodeGate() {
+        var input = document.getElementById("takeaway-code-input");
+        var status = document.getElementById("takeaway-status");
+        if (!input || !status) {
+          return;
+        }
+        var VALID_CODES = [
+          "111", "121", "131", "141", "151", "161", "171", "181", "191",
+          "211", "221", "231", "241", "251", "261", "271", "281", "291",
+          "311", "321", "331", "341", "351", "361", "371", "381", "391",
+          "411", "421", "431", "441", "451", "461", "471", "481", "491"
+        ];
+        var validSet = new Set(VALID_CODES);
+        var lastAutoUnlockCode = "";
+
+        function cleanCode(raw) {
+          return String(raw || "")
+            .toUpperCase()
+            .replace(/[^A-Z0-9]/g, "");
+        }
+
+        function startDownload() {
+          var a = document.createElement("a");
+          a.href = "ActsOfService-fonts.zip";
+          a.download = "ActsOfService-fonts.zip";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+        }
+
+        function tryUnlock() {
+          var code = cleanCode(input.value);
+          input.value = code;
+          if (!code) {
+            status.textContent = "Enter an order number first.";
+            return;
+          }
+          if (!validSet.has(code)) {
+            status.textContent = "Invalid code. Please check your order number.";
+            return;
+          }
+          status.textContent = "Code accepted. Download starting...";
+          startDownload();
+        }
+
+        input.addEventListener("input", function () {
+          var cleaned = cleanCode(input.value);
+          if (cleaned !== input.value) {
+            input.value = cleaned;
+          }
+          if (!cleaned) {
+            status.textContent = "Enter a valid order number to download the typefaces.";
+            lastAutoUnlockCode = "";
+            return;
+          }
+          if (validSet.has(cleaned)) {
+            if (cleaned !== lastAutoUnlockCode) {
+              lastAutoUnlockCode = cleaned;
+              tryUnlock();
+            }
+          } else {
+            status.textContent = "Invalid code. Please check your order number.";
+            lastAutoUnlockCode = "";
+          }
+        });
+      })();
+
+      /** CSS px vid standard 96 dpi: 1 pt = 96/72 px */
+      function ptToPx(pt) {
+        return pt * (96 / 72);
+      }
+
+      function sanitizeSpecimenText(text) {
+        if (!text) {
+          return "";
+        }
+        var normalized = String(text).replace(/\r\n?/g, "\n");
+        return normalized.replace(/[^0-9A-Za-zÀ-ÖØ-öø-ÿÅÄÖåäö .,;:!?'"“”‘’()\[\]{}\-–—_+\/\\&@#%*=|<>~^`·…§°\n]/g, "");
+      }
+
+      function bindSpecimenGroup(group) {
+        var slider = group.querySelector(".specimen-pt-slider");
+        var ptLabel = group.querySelector(".specimen-pt-value");
+        var previews = group.querySelectorAll(".specimen-preview[contenteditable]");
+        if (!slider || previews.length === 0) {
+          return;
+        }
+
+        function mirrorFrom(source) {
+          var text = sanitizeSpecimenText(source.innerText);
+          if (source.innerText !== text) {
+            source.innerText = text;
+          }
+          previews.forEach(function (p) {
+            if (p !== source && p.innerText !== text) {
+              p.innerText = text;
+            }
+          });
+        }
+
+        previews.forEach(function (p) {
+          p.addEventListener("beforeinput", function (e) {
+            if (e.inputType && e.inputType.indexOf("insert") === 0) {
+              var data = e.data || "";
+              if (!data && e.inputType === "insertLineBreak") {
+                return;
+              }
+              var clean = sanitizeSpecimenText(data);
+              if (clean !== data) {
+                e.preventDefault();
+                if (clean) {
+                  document.execCommand("insertText", false, clean);
+                }
+              }
+            }
+          });
+          p.addEventListener("input", function () {
+            mirrorFrom(p);
+          });
+          p.addEventListener("paste", function (e) {
+            e.preventDefault();
+            var plain = e.clipboardData && e.clipboardData.getData("text/plain");
+            if (!plain) {
+              return;
+            }
+            var clean = sanitizeSpecimenText(plain);
+            if (!clean) {
+              return;
+            }
+            document.execCommand("insertText", false, clean);
+          });
+        });
+
+        function syncSize() {
+          var pt = parseFloat(slider.value, 10);
+          if (isNaN(pt)) {
+            return;
+          }
+          var px = ptToPx(pt);
+          previews.forEach(function (p) {
+            p.style.fontSize = px + "px";
+          });
+          if (ptLabel) {
+            ptLabel.textContent = Math.round(pt) + " pt";
+          }
+        }
+
+        slider.addEventListener("input", syncSize);
+        syncSize();
+      }
+
+      document.querySelectorAll(".specimen-group").forEach(bindSpecimenGroup);
+      listenMq(mobileViewportMq, function () {
+        document.querySelectorAll(".specimen-group").forEach(function (group) {
+          var slider = group.querySelector(".specimen-pt-slider");
+          var ptLabel = group.querySelector(".specimen-pt-value");
+          var previews = group.querySelectorAll(".specimen-preview[contenteditable]");
+          if (!slider || previews.length === 0) {
+            return;
+          }
+          var pt = parseFloat(slider.value, 10);
+          if (isNaN(pt)) {
+            return;
+          }
+          var px = ptToPx(pt);
+          previews.forEach(function (p) {
+            p.style.fontSize = px + "px";
+          });
+          if (ptLabel) {
+            ptLabel.textContent = Math.round(pt) + " pt";
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
