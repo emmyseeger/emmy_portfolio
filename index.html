@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Acts of Service — typeface</title>
+  <link rel="preload" href="ActsofService-Sans.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="ActsofService-SansItalic.woff2" as="font" type="font/woff2" crossorigin>
   <script>
     (function () {
       if ("scrollRestoration" in history) {
@@ -45,14 +47,16 @@
     }
     @font-face {
       font-family: "Acts of Service Sans";
-      src: url("ActsofService-Sans.otf") format("opentype");
+      src: url("ActsofService-Sans.woff2") format("woff2"),
+        url("ActsofService-Sans.otf") format("opentype");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
     @font-face {
       font-family: "Acts of Service Sans";
-      src: url("ActsofService-SansItalic.otf") format("opentype");
+      src: url("ActsofService-SansItalic.woff2") format("woff2"),
+        url("ActsofService-SansItalic.otf") format("opentype");
       font-weight: 400;
       font-style: italic;
       font-display: swap;
@@ -989,7 +993,7 @@
       </div>
       <div class="about-page-content">
         <div class="about-page-image-wrap">
-          <img class="about-page-image" src="Placeholder_About.jpeg" alt="Acts of Service process and material exploration." />
+          <img class="about-page-image" src="AOS_emmyseeger.jpeg" alt="Acts of Service process and material exploration." />
         </div>
         <p class="about-page-text">
           This website is part of my (Emmy Seeger) bachelor’s thesis at Beckmans College of Design,
@@ -1329,42 +1333,75 @@
 
       var heroImg = document.getElementById("hero-float-img");
       if (heroImg) {
-        /** Fast ordning 1–20 (blandad men beständig). Nästa bild vid varje sidladdning. */
+        /** Fast ordning 1–20 (blandad men beständig). Nästa bild vid varje sidladdning / cykel. */
         var HERO_LOOP_ORDER = [
           3, 11, 7, 19, 2, 15, 9, 4, 20, 1, 8, 14, 6, 12, 17, 5, 13, 16, 10, 18
         ];
-        var loopStr = sessionStorage.getItem("aosHeroLoopIdx");
-        var loopPos = loopStr !== null ? parseInt(loopStr, 10) : 0;
-        if (isNaN(loopPos) || loopPos < 0 || loopPos >= HERO_LOOP_ORDER.length) {
-          loopPos = 0;
-        }
-        var heroIdx = HERO_LOOP_ORDER[loopPos];
-        sessionStorage.setItem("aosHeroLoopIdx", String((loopPos + 1) % HERO_LOOP_ORDER.length));
-        var heroImgDone = false;
-        function onHeroImgReady() {
-          if (heroImgDone) {
-            return;
+        /** Utställning: samma skifte som vid refresh, automatiskt var 10:e minut. */
+        var HERO_AUTO_CYCLE_MS = 10 * 60 * 1000;
+        var heroReady = false;
+
+        function readHeroLoopPos() {
+          var loopStr = sessionStorage.getItem("aosHeroLoopIdx");
+          var loopPos = loopStr !== null ? parseInt(loopStr, 10) : 0;
+          if (isNaN(loopPos) || loopPos < 0 || loopPos >= HERO_LOOP_ORDER.length) {
+            loopPos = 0;
           }
-          heroImgDone = true;
-          applyAccentFromImage(heroImg, heroIdx);
-          requestAnimationFrame(function () {
-            placeHeroFloatImg(heroImg);
-          });
-          heroImg.classList.add("is-visible");
+          return loopPos;
         }
-        heroImg.addEventListener("load", onHeroImgReady);
+
+        function advanceHeroLoopSession() {
+          var loopPos = readHeroLoopPos();
+          sessionStorage.setItem(
+            "aosHeroLoopIdx",
+            String((loopPos + 1) % HERO_LOOP_ORDER.length)
+          );
+          return loopPos;
+        }
+
+        function showHeroFromLoopPos(loopPos) {
+          var heroIdx = HERO_LOOP_ORDER[loopPos];
+          var pending = false;
+
+          function onHeroImgReady() {
+            if (pending) {
+              return;
+            }
+            pending = true;
+            heroReady = true;
+            applyAccentFromImage(heroImg, heroIdx);
+            requestAnimationFrame(function () {
+              placeHeroFloatImg(heroImg);
+            });
+            heroImg.classList.add("is-visible");
+          }
+
+          heroImg.classList.remove("is-visible");
+          heroImg.addEventListener("load", onHeroImgReady, { once: true });
+          heroImg.src = "AOS" + heroIdx + ".jpeg";
+          if (heroImg.complete) {
+            onHeroImgReady();
+          }
+        }
+
         heroImg.addEventListener("error", function () {
           heroImg.remove();
         });
-        heroImg.src = "AOS" + heroIdx + ".jpeg";
-        if (heroImg.complete) {
-          onHeroImgReady();
-        }
+
+        showHeroFromLoopPos(advanceHeroLoopSession());
+
         window.addEventListener("resize", function () {
-          if (heroImgDone) {
+          if (heroReady) {
             placeHeroFloatImg(heroImg);
           }
         });
+
+        setInterval(function () {
+          if (!heroImg.isConnected) {
+            return;
+          }
+          showHeroFromLoopPos(advanceHeroLoopSession());
+        }, HERO_AUTO_CYCLE_MS);
       }
 
       var raw = getComputedStyle(document.documentElement).getPropertyValue("--letter-cycle").trim();
